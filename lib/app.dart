@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nightoutadmin/config.dart';
 import 'package:nightoutadmin/library/loading.dart';
 import 'package:nightoutadmin/providers/main.provider.dart';
-import 'package:nightoutadmin/router/app.router.dart';
+import 'package:nightoutadmin/app.router.dart';
 import 'package:nightoutadmin/style/app.color.dart';
 import 'package:nightoutadmin/style/app.theme.dart';
 

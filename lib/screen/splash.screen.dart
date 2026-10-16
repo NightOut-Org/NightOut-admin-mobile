@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nightoutadmin/extensions/context.extension.dart';
-import 'package:nightoutadmin/router/app.router.dart';
+import 'package:nightoutadmin/modules/controller/auth.ctrl.dart';
+import 'package:nightoutadmin/app.router.dart';
 import 'package:nightoutadmin/style/app.color.dart';
 import 'package:nightoutadmin/style/app.theme.dart';
 import 'package:nightoutadmin/widgets/app/load.widget.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(Duration(seconds: 2), () {
+    Future<void>.delayed(const Duration(seconds: 2), () async {
       if (!mounted) return;
-      context.go(AppRoutes.home);
+      final signedIn = await ref.read(authCtrl.notifier).restore();
+      if (!mounted) return;
+      context.go(signedIn ? AppRoutes.home : AppRoutes.login);
     });
   }
 
