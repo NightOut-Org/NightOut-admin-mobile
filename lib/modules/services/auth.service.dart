@@ -47,7 +47,7 @@ class AuthService {
 
   Future<AuthUser> fetchUser(String accessToken) async {
     final json = await _send(method: 'GET', path: '/auth/v1/user', headers: _userHeaders(accessToken));
-    log('json: ${json.toString()}');
+    log('fetchUser: ${json.toString()}');
 
     return AuthUser.fromJson(json);
   }
